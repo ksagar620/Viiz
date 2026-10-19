@@ -1,0 +1,27 @@
+:root {
+  color-scheme: dark;
+  --bg: #0b1120;
+  --panel: #121c2d;
+  --text: #e5eefc;
+  --muted: #9fb2d9;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  min-height: 100%;
+  background: radial-gradient(circle at top, #12213d, var(--bg) 40%, #090d15 100%);
+  color: var(--text);
+  font-family: Inter, "Segoe UI", sans-serif;
+}
+
+body {
+  min-height: 100vh;
+}
+
+input, textarea, button {
+  font: inherit;
+}

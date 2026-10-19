@@ -1,0 +1,66 @@
+<div class="page-shell">
+  <header class="topbar">
+    <div>
+      <p class="eyebrow">Viiz AI Workspace</p>
+      <h1>Agentic CSV & Excel Analysis</h1>
+    </div>
+  </header>
+
+  <main class="layout">
+    <section class="panel upload-panel">
+      <h2>Upload data files</h2>
+
+      <label class="file-picker">
+        <span>Select CSV or Excel files</span>
+        <input type="file" multiple accept=".csv,.xlsx,.xls,.xlsm" (change)="onFilesSelected($event)" />
+      </label>
+
+      <label class="field-label" for="promptInput">Prompt</label>
+      <textarea
+        id="promptInput"
+        rows="4"
+        [(ngModel)]="prompt"
+        placeholder="Example: Show monthly sales by region or compare revenue by product category"
+      ></textarea>
+
+      <label class="checkbox-row">
+        <input type="checkbox" [(ngModel)]="generateAll" />
+        <span>Generate all useful information</span>
+      </label>
+
+      <button type="button" (click)="submit()">Generate insights</button>
+    </section>
+
+    <section class="panel results-panel">
+      <h2>Insights</h2>
+      <div class="status">{{ status }}</div>
+
+      <div *ngIf="summary" class="summary-cards">
+        <div class="summary-card">
+          <span>Files</span>
+          <strong>{{ summary.file_count }}</strong>
+        </div>
+        <div class="summary-card">
+          <span>Rows</span>
+          <strong>{{ summary.row_count }}</strong>
+        </div>
+        <div class="summary-card">
+          <span>Columns</span>
+          <strong>{{ summary.column_count }}</strong>
+        </div>
+        <div class="summary-card">
+          <span>Joins</span>
+          <strong>{{ summary.join_history?.length ?? 0 }}</strong>
+        </div>
+      </div>
+
+      <div *ngIf="insights.length" class="insights-list">
+        <div class="insight-item" *ngFor="let insight of insights">
+          {{ insight }}
+        </div>
+      </div>
+
+      <div id="chart-output" class="charts-container"></div>
+    </section>
+  </main>
+</div>
